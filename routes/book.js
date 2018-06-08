@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/new', function(req, res, next) {
     const book = new Book({
-        title: 'Kitap Başlığı',
+        title: 'Bu ilk kitap',
         published: false,
         comments: [
             { message: "Harika bir kitap"},
