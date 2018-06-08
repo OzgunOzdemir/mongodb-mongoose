@@ -49,13 +49,24 @@ router.put('/update', (req, res ) => {
        },
        {
            published: true
-       },
-       {
-           multi: true
-       } (err, data) => {
+       }, (err, data) => {
            res.json(data);
        }
    )
+});
+
+router.put('/updateById', (req, res) => {
+   Book.findByIdAndUpdate('5b1aeef7bc4f4013f1159b88', { title: 'Hello world'}, (err, data) => {
+        res.json(data);
+   });
+});
+
+router.delete('/remove', (req, res) => {
+  Book.findById('5b1aeef7bc4f4013f1159b88', (err, book) => {
+        book.remove((err, data) => {
+            res.json(data);
+        })
+  });
 });
 
 module.exports = router;
