@@ -42,20 +42,31 @@ router.get('/searchById', (req, res) => {
     });
 });
 
-router.put('/update', (req, res ) => {
-   Book.update(
-       {
-           published: false
-       },
-       {
-           published: true
-       },
-       {
-           multi: true
-       } (err, data) => {
-           res.json(data);
-       }
-   )
+router.put('/update', (req, res) => {
+    Book.update(
+        {
+            published: false
+        },
+        {
+            published: true
+        }, (err, data) => {
+            res.json(data);
+        }
+    )
+});
+
+router.put('/updateById', (req, res) => {
+    Book.findByIdAndUpdate('5b1aeef7bc4f4013f1159b88', { title: 'Hello world' }, (err, data) => {
+        res.json(data);
+    });
+});
+
+router.delete('/remove', (req, res) => {
+    Book.findById('5b1aeef7bc4f4013f1159b88', (err, book) => {
+        book.remove((err, data) => {
+            res.json(data);
+        })
+    });
 });
 
 module.exports = router;
